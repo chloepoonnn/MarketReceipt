@@ -15,8 +15,8 @@ public class ShoppingReceipt {
   private static Double tax = 0.0;
   private static Double total = 0.0;
 
-  private static final double NY_TAX_RATE = 0.08875;
-  private static final double CA_TAX_RATE = 0.0975;
+  // private static final double NY_TAX_RATE = 0.08875;
+  // private static final double CA_TAX_RATE = 0.0975;
 
   private List<ShoppingItem> shoppingList = new ArrayList<>();
 
@@ -40,8 +40,15 @@ public class ShoppingReceipt {
     if (shoppingList.isEmpty()) {
       throw new IllegalArgumentException("Shopping list cannot be empty");
     }
-    double taxRate =
-        location.equalsIgnoreCase("NY") ? NY_TAX_RATE : CA_TAX_RATE;
+    double taxRate;
+    if (location.equalsIgnoreCase("NY")) {
+      taxRate = Currency.NY.getTaxRate();
+    } else if (location.equalsIgnoreCase("CA")) {
+      taxRate = Currency.CA.getTaxRate();
+    } else {
+      throw new IllegalArgumentException("Unsupported location: " + location);
+    }
+
     BigDecimal salesTax = BigDecimal.ZERO;
     BigDecimal scale = BigDecimal.valueOf(0.05);
 
@@ -59,15 +66,13 @@ public class ShoppingReceipt {
         BigDecimal itemTax = BigDecimal.valueOf(item.getPrice())
             .multiply(BigDecimal.valueOf(item.getQuantity()))
             .multiply(BigDecimal.valueOf(taxRate))
-            .setScale(2, RoundingMode.CEILING); // Round to 2 decimal places
+            .setScale(2, RoundingMode.CEILING); 
 
-        // Round the tax to the nearest 0.05
         itemTax = itemTax.divide(scale, 0, RoundingMode.UP).multiply(scale);
-
+        
         salesTax = salesTax.add(itemTax);
       }
     }
-
     return salesTax.doubleValue();
   }
 

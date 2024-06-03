@@ -1,4 +1,5 @@
-/Users/chloepoon/github/marketreceipt/src/main/java/pinnacle/infra/ProductCategory.java
-/Users/chloepoon/github/marketreceipt/src/main/java/pinnacle/PrintingShoppingReceipt.java
-/Users/chloepoon/github/marketreceipt/src/main/java/pinnacle/infra/ShoppingItem.java
-/Users/chloepoon/github/marketreceipt/src/main/java/pinnacle/infra/ShoppingReceipt.java
+/Users/chloepoon/github/MarketReceipt/src/main/java/pinnacle/infra/ProductCategory.java
+/Users/chloepoon/github/MarketReceipt/src/main/java/pinnacle/infra/Currency.java
+/Users/chloepoon/github/MarketReceipt/src/main/java/pinnacle/infra/ShoppingReceipt.java
+/Users/chloepoon/github/MarketReceipt/src/main/java/pinnacle/infra/ShoppingItem.java
+/Users/chloepoon/github/MarketReceipt/src/main/java/pinnacle/PrintingShoppingReceipt.java
